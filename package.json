@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-better-http-rgb",
+  "name": "homebridge-better-http-rgb-hsb",
   "version": "1.0.0",
   "description": "Homebridge plugin to control a web-based RGB device.",
   "license": "ISC",
@@ -10,18 +10,14 @@
     "node": ">=0.12.0",
     "homebridge": ">=0.2.0"
   },
-  "author": {
-    "name": "Justin J. Novack",
-    "email": "jnovack@gmail.com"
-  },
+  "author": "Inventari <inventari@inventarislabs.com>",
   "contributors": [
-    {
-      "name": "Adrian Rudman"
-    }
+    "Adrian Rudman",
+    "Justin J. Novack <jnovack@gmail.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jnovack/homebridge-better-http-rgb.git"
+    "url": "git://github.com/inventari/homebridge-better-http-rgb-hsb.git"
   },
   "scripts": {
     "lint": "grunt lint",
@@ -33,12 +29,22 @@
     "request": "^2.65.0"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
+    "chai": "^3.5.0",
     "chai-things": "^0.2.0",
-    "express": "^4.13.3",
+    "express": "^4.15.4",
     "grunt": "^0.4.5",
+    "grunt-cli": "^1.2.0",
     "grunt-contrib-jshint": "^0.11.3",
     "hap-nodejs": "0.0.3",
-    "mocha": "^2.3.4"
+    "jshint": "^2.9.5",
+    "mocha": "^2.5.3"
+  },
+  "bugs": {
+    "url": "https://github.com/inventari/homebridge-better-http-rgb-hsb/issues"
+  },
+  "homepage": "https://github.com/inventari/homebridge-better-http-rgb-hsb#readme",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   }
 }

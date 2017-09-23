@@ -43,12 +43,19 @@ can only read the settings, you may not change them.
     {
         "accessory": "HTTP-RGB",
         "name": string,
-
+        
+        "model": string-optional,
+        "manufacturer": string-optional,
+        "serial": string-optional,
+        
+		"host": string,
         "http_method": string-optional,
         "username": string-optional,
         "password": string-optional,
         "sendImmediately": string-optional,
-
+        
+    	"hex": boolean-optional,
+		 
         "switch": {
             "status": url-optional,
             "powerOn": string-or-object,
@@ -68,6 +75,17 @@ can only read the settings, you may not change them.
         },
 
         "brightness": string-or-object,
+        "hue": {
+            "status": url-status,
+            "url": url-optional,
+            "http_method": string-optional
+        },
+        "saturation": {
+            "status": url-status,
+            "url": url-optional,
+            "http_method": string-optional,
+            "scale": int-optional
+        },
         "color": {
             "status": url-status,
             "url": url-optional,
@@ -85,22 +103,95 @@ can only read the settings, you may not change them.
         {
             "accessory": "HTTP-RGB",
             "name": "RGB Led Strip",
-
+			"host": "http://localhost",
+			
             "switch": {
-                "status": "http://localhost/api/v1/status",
-                "powerOn": "http://localhost/api/v1/on",
-                "powerOff": "http://localhost/api/v1/off"
+                "status": "/api/v1/status",
+                "powerOn": "/api/v1/on",
+                "powerOff": "/api/v1/off"
             },
 
             "brightness": {
-                "status": "http://localhost/api/v1/brightness",
-                "url": "http://localhost/api/v1/brightness/%s"
+                "status": "/api/v1/brightness",
+                "url": "/api/v1/brightness/%s"
             },
 
             "color": {
-                "status": "http://localhost/api/v1/set",
-                "url": "http://localhost/api/v1/set/%s",
+                "status": "/api/v1/set",
+                "url": "/api/v1/set/%s",
                 "brightness": true
+            }
+        }
+    ]
+    
+### Full RGB - HSB Device - HEX
+
+    "accessories": [
+        {
+            "accessory": "HTTP-RGB",
+            "name": "RGB Led Strip",
+			"host": "http://localhost",
+
+			"hex": true,
+			
+            "switch": {
+                "status": "/api/v1/status",
+                "powerOn": "/api/v1/on",
+                "powerOff": "/api/v1/off"
+            },
+
+            "brightness": {
+                "status": "/api/v1/brightness",
+                "url": "/api/v1/brightness/%s",
+                "scale": 255
+            },
+
+            "hue": {
+                "status": "/api/v1/hue",
+                "url": "/api/v1/hue/%s",
+                "scale": 255
+            },
+
+            "saturation": {
+                "status": "/api/v1/saturation",
+                "url": "/api/v1/saturation/%s",
+                "scale": 255
+            }
+        }
+    ]
+    
+### Full RGB - HSB Device - Decimal
+
+    "accessories": [
+        {
+            "accessory": "HTTP-RGB",
+            "name": "RGB Led Strip",
+			"host": "http://localhost",
+
+			"hex": false,
+			
+            "switch": {
+                "status": "/api/v1/status",
+                "powerOn": "/api/v1/on",
+                "powerOff": "/api/v1/off"
+            },
+
+            "brightness": {
+                "status": "/api/v1/brightness",
+                "url": "/api/v1/brightness/%s",
+                "scale": 100
+            },
+
+            "hue": {
+                "status": "/api/v1/hue",
+                "url": "/api/v1/hue/%s",
+                "scale": 360
+            },
+
+            "saturation": {
+                "status": "/api/v1/saturation",
+                "url": "/api/v1/saturation/%s",
+                "scale": 100
             }
         }
     ]
