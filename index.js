@@ -345,9 +345,7 @@ HTTP_RGB.prototype = {
                 } else {
                     var level = parseInt(responseBody);
                     this.log('brightness is currently at %s %', level);
-                    if (this.hex) {
-                        level = Math.round(level / 2.55);
-                    }
+                    level = Math.round((level / this.brightness.scale) * 100);
                     callback(null, level);
                 }
             }.bind(this));
@@ -371,11 +369,9 @@ HTTP_RGB.prototype = {
 
         // If achromatic, then update brightness, otherwise, update HSL as RGB
         if (!this.color) {
-
+            var levelurl = (level * this.brightness.scale) / 100;
             if (this.hex) {
-                levelurl = this._decToHex(level / 100 * this.brightness.scale);
-            } else {
-                levelurl = level;
+                levelurl = this._decToHex(levelurl);
             }
             var url = this.brightness.set_url.replace('%s', levelurl);
 
@@ -427,7 +423,7 @@ HTTP_RGB.prototype = {
 
                     hue = levels[0];
                 } else {
-                    hue = responseBody;
+                    hue = Math.round((responseBody / this.hue.scale) * 360);
                 }
 
                 this.log('... hue is currently %s', hue);
@@ -497,7 +493,7 @@ HTTP_RGB.prototype = {
 
                     saturation = levels[1];
                 } else {
-                    saturation = responseBody;
+                    saturation = Math.round((responseBody / this.saturation.scale) * 100);
                 }
 
 
